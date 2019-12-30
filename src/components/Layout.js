@@ -1,14 +1,17 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Flex, Box } from 'rebass';
+import { ThemeProvider } from 'emotion-theming';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import useSiteMetadata from './SiteMetadata';
+import theme from '../theme';
 import { withPrefix } from 'gatsby';
 
 const Layout = ({ children }) => {
   const { title, description } = useSiteMetadata();
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Helmet>
         <html lang="zh-Hant" />
         <title>{title}</title>
@@ -44,10 +47,14 @@ const Layout = ({ children }) => {
         <meta property="og:url" content="/" />
         <meta property="og:image" content={`${withPrefix('/')}img/og-image.jpg`} />
       </Helmet>
-      <Navbar />
-      <div>{children}</div>
-      <Footer />
-    </div>
+      <Flex justifyContent="center">
+        <Box sx={{ maxWidth: '42em' }}>
+          <Navbar />
+          <div>{children}</div>
+          <Footer />
+        </Box>
+      </Flex>
+    </ThemeProvider>
   );
 };
 
