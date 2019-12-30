@@ -1,0 +1,59 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "plugin:import/errors",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": ["react", "import", "jsx-a11y", "prettier"],
+  "rules": {
+    // TODO: this should be only for the test files
+    // it should error for normal src files
+    "no-unused-expressions": "off",
+    "object-curly-newline": "off",
+    // the following rules will be revisited
+    "import/prefer-default-export": 1,
+    "linebreak-style": 0,
+    "max-len": 0,
+    // TODO: the following rules are to be removed
+    "react/destructuring-assignment": 0,
+    "camelcase": 0,
+    "react/no-array-index-key": 0,
+    "react/no-access-state-in-setstate": 0,
+    "import/namespace": 0,
+    "react/display-name": 0,
+    "react/sort-comp": 0,
+    "react/no-this-in-sfc": 0,
+    "no-case-declarations": 0,
+    "import/no-unresolved": 0,
+    "react/no-unused-prop-types": 0,
+    "import/default": 0,
+    "no-underscore-dangle": "off",
+    "no-param-reassign": 0
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.js", "**/test/**/*.js"],
+      "env": {
+        "mocha": true
+      },
+      "rules": {
+        "no-undef": "off",
+        "import/no-dynamic-require": "off",
+        "no-unused-expressions": "off",
+        "import/no-extraneous-dependencies": "off",
+        "global-require": "off"
+      }
+    }
+  ]
+}

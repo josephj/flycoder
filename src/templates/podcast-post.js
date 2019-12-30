@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { kebabCase } from "lodash";
-import Helmet from "react-helmet";
-import { graphql, Link } from "gatsby";
-import Layout from "../components/Layout";
-import Content, { HTMLContent } from "../components/Content";
-import { DiscussionEmbed } from "disqus-react";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { kebabCase } from 'lodash';
+import Helmet from 'react-helmet';
+import { graphql, Link } from 'gatsby';
+import Layout from '../components/Layout';
+import Content, { HTMLContent } from '../components/Content';
+import { DiscussionEmbed } from 'disqus-react';
 
 export const BlogPostTemplate = ({
   content,
@@ -14,23 +14,23 @@ export const BlogPostTemplate = ({
   tags,
   slug,
   title,
-  helmet
+  helmet,
+  id,
 }) => {
   const PostContent = contentComponent || Content;
   const disqusConfig = {
+    url: 'flycoder.io',
     shortname: process.env.GATSBY_DISQUS_NAME,
-    config: { identifier: slug, title }
+    config: { identifier: slug, title },
   };
 
   return (
     <section className="section">
-      {helmet || ""}
+      {helmet || ''}
       <div className="container content">
         <div className="columns">
           <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
+            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">{title}</h1>
             <p>{description}</p>
             <PostContent content={content} />
             {tags && tags.length ? (
@@ -48,7 +48,9 @@ export const BlogPostTemplate = ({
           </div>
         </div>
       </div>
+      {/* 
       <DiscussionEmbed {...disqusConfig} />
+      */}
     </section>
   );
 };
@@ -58,7 +60,7 @@ BlogPostTemplate.propTypes = {
   contentComponent: PropTypes.func,
   description: PropTypes.string,
   title: PropTypes.string,
-  helmet: PropTypes.object
+  helmet: PropTypes.object,
 };
 
 const BlogPost = ({ data }) => {
@@ -73,10 +75,7 @@ const BlogPost = ({ data }) => {
         helmet={
           <Helmet titleTemplate="%s | Blog">
             <title>{`${post.frontmatter.title}`}</title>
-            <meta
-              name="description"
-              content={`${post.frontmatter.description}`}
-            />
+            <meta name="description" content={`${post.frontmatter.description}`} />
           </Helmet>
         }
         tags={post.frontmatter.tags}
@@ -88,8 +87,8 @@ const BlogPost = ({ data }) => {
 
 BlogPost.propTypes = {
   data: PropTypes.shape({
-    markdownRemark: PropTypes.object
-  })
+    markdownRemark: PropTypes.object,
+  }),
 };
 
 export default BlogPost;
