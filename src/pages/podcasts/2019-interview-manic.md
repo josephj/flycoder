@@ -1,11 +1,12 @@
 ---
-templateKey: 'podcast-post'
-slug: 'ep1-manic'
+templateKey: podcast-post
 title: '#1 在澳洲發光、攻略三國的 Manic (上)'
-date: 2019-10-15
-featuredpost: false
+date: 2019-10-15T00:00:00.000Z
 description: >-
-  稍微早期來到澳洲的朋友都應該有看到專訪他的文章「來去澳洲寫程式—專訪澳洲 Web 工程師莊憶芹 (Manic)」，因此害不少人入坑，讓許多台灣開發者前仆後繼的來到澳洲。算是這一波旅澳潮的傳教士吧！所以我們的第一集就想要專訪他，重新溫習他的故事外、聊聊他後續的旅程，讓你我都可以從他的經驗上得到一些東西。因為錄製時間蠻長的，第一個 Episode 就得分上下集。本集比較適合想來但還沒來到澳洲的朋友們，主要聊 Manic 開始來到澳洲、生活、最後決定離開的體驗，也蠻多部分是關於如何面試找工作的。
+  「來去澳洲寫程式—專訪澳洲 Web 工程師莊憶芹 (Manic)」害不少人入坑，讓許多台灣開發者前仆後繼的來到澳洲。聊聊 Manic
+  開始來到澳洲、生活、最後決定離開、找工作心得的體驗。
+featuredpost: false
+featuredImage: /img/ep3-放下一切的勇氣：環遊世界-900-天的-fred.png
 tags:
   - Manic
   - 澳洲
