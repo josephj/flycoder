@@ -5,7 +5,8 @@ import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import Layout from '../components/Layout';
 import Content, { HTMLContent } from '../components/Content';
-import { DiscussionEmbed } from 'disqus-react';
+import { Box } from 'rebass';
+import { Disqus, CommentCount } from 'gatsby-plugin-disqus';
 
 export const BlogPostTemplate = ({
   content,
@@ -16,41 +17,42 @@ export const BlogPostTemplate = ({
   title,
   helmet,
   id,
+  siteUrl = '',
+  path,
 }) => {
   const PostContent = contentComponent || Content;
   const disqusConfig = {
-    url: 'flycoder.io',
-    shortname: process.env.GATSBY_DISQUS_NAME,
-    config: { identifier: slug, title },
+    url: `${siteUrl + path}`,
+    identifier: id,
+    title: title,
   };
 
   return (
     <section className="section">
       {helmet || ''}
       <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">{title}</h1>
-            <p>{description}</p>
-            <PostContent content={content} />
-            {tags && tags.length ? (
-              <div style={{ marginTop: `4rem` }}>
-                <h4>Tags</h4>
-                <ul className="taglist">
-                  {tags.map(tag => (
-                    <li key={tag + `tag`}>
-                      <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
+        <h1>{title}</h1>
+        <Box sx={{ bg: 'lightgray', p: 3, lineHeight: 'body' }}>{description}</Box>
+
+        <Box sx={{ lineHeight: 'body' }}>
+          <PostContent content={content} />
+        </Box>
+        {/* 
+        {tags && tags.length ? (
+          <div>
+            <h4>Tags</h4>
+            <ul className="taglist">
+              {tags.map(tag => (
+                <li key={tag + `tag`}>
+                  <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
+        ) : null}
+        */}
       </div>
-      {/* 
-      <DiscussionEmbed {...disqusConfig} />
-      */}
+      {siteUrl && <Disqus config={disqusConfig} />}
     </section>
   );
 };
@@ -64,7 +66,12 @@ BlogPostTemplate.propTypes = {
 };
 
 const BlogPost = ({ data }) => {
-  const { markdownRemark: post } = data;
+  const {
+    markdownRemark: post,
+    site: {
+      siteMetadata: { siteUrl },
+    },
+  } = data;
 
   return (
     <Layout>
@@ -80,6 +87,9 @@ const BlogPost = ({ data }) => {
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        siteUrl={siteUrl}
+        id={post.id}
+        path={post.frontmatter.path}
       />
     </Layout>
   );
@@ -95,12 +105,19 @@ export default BlogPost;
 
 export const pageQuery = graphql`
   query BlogPostByID($id: String!) {
+    site {
+      siteMetadata {
+        title
+        siteUrl
+      }
+    }
     markdownRemark(id: { eq: $id }) {
       id
       html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
+        path
         description
         tags
       }

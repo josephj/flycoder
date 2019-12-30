@@ -10,7 +10,7 @@ const Navbar = class extends React.Component {
         <Flex alignItems="center" justifyContent="center">
           <Box mr={2}>
             <Link to="/" title="Logo">
-              <img src={logo} alt="Kaldi" style={{ width: '60px', height: '60px' }} />
+              <img src={logo} alt="Logo" style={{ width: '60px', height: '60px' }} />
             </Link>
           </Box>
           <Text

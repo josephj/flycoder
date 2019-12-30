@@ -30,7 +30,7 @@ class BlogRoll extends React.Component {
                     </div>
                   ) : null}
                   <p className="post-meta">
-                    <Link className="title has-text-primary is-size-4" to={post.fields.slug}>
+                    <Link className="title has-text-primary is-size-4" to={post.frontmatter.path}>
                       {post.frontmatter.title}
                     </Link>
                     <span> &bull; </span>
@@ -38,10 +38,10 @@ class BlogRoll extends React.Component {
                   </p>
                 </header>
                 <p>
-                  {post.excerpt}
+                  {post.frontmatter.description}
                   <br />
                   <br />
-                  <Link className="button" to={post.fields.slug}>
+                  <Link className="button" to={post.frontmatter.path}>
                     Keep Reading →
                   </Link>
                 </p>
@@ -78,6 +78,8 @@ export default () => (
               }
               frontmatter {
                 title
+                description
+                path
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
                 featuredpost

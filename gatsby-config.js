@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'flycoder 飛行開發者',
+    siteUrl: 'https://flycoder.io',
     description: '台灣軟體工程師在海外打拼的故事與心得',
   },
   plugins: [
@@ -59,16 +60,22 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-netlify-cms',
-      options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [`exo\:700`],
         display: 'swap',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-disqus',
+      options: {
+        shortname: 'flycoder-io',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-netlify-cms',
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`,
       },
     },
     'gatsby-plugin-netlify', // make sure to keep it last in the array
