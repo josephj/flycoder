@@ -346,7 +346,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/plugin-syntax-jsx@^7.7.4":
+"@babel/plugin-syntax-jsx@^7.2.0", "@babel/plugin-syntax-jsx@^7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-jsx/-/plugin-syntax-jsx-7.7.4.tgz#dab2b56a36fb6c3c222a1fbc71f7bf97f327a9ec"
   integrity sha512-wuy6fiMe9y7HeZBWXYCGt2RGxZOj0BImZ9EyXJVnVGBKO/Br592rbR3rtIQn0eQhAk9vqaKP5n8tVqEFBQMfLg==
@@ -604,7 +604,7 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-jsx" "^7.7.4"
 
-"@babel/plugin-transform-react-jsx@^7.7.4":
+"@babel/plugin-transform-react-jsx@^7.3.0", "@babel/plugin-transform-react-jsx@^7.7.4":
   version "7.7.7"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.7.7.tgz#5cbaa7445b4a09f774029f3cc7bb448ff3122a5d"
   integrity sha512-SlPjWPbva2+7/ZJbGcoqjl4LsQaLpKEzxW9hcxU7675s24JmdotJOSJ4cgAbV82W3FcZpHIGmRZIlUL8ayMvjw==
@@ -813,6 +813,23 @@
     esutils "^2.0.2"
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
+
+"@emotion/babel-plugin-jsx-pragmatic@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@emotion/babel-plugin-jsx-pragmatic/-/babel-plugin-jsx-pragmatic-0.1.5.tgz#27debfe9c27c4d83574d509787ae553bf8a34d7e"
+  integrity sha512-y+3AJ0SItMDaAgGPVkQBC/S/BaqaPACkQ6MyCI2CUlrjTxKttTVfD3TMtcs7vLEcLxqzZ1xiG0vzwCXjhopawQ==
+  dependencies:
+    "@babel/plugin-syntax-jsx" "^7.2.0"
+
+"@emotion/babel-preset-css-prop@^10.0.23":
+  version "10.0.27"
+  resolved "https://registry.yarnpkg.com/@emotion/babel-preset-css-prop/-/babel-preset-css-prop-10.0.27.tgz#58868d9a6afee0eeaeb0fa9dc5ccb1b12d4f786b"
+  integrity sha512-rducrjTpLGDholp0l2l4pXqpzAqYYGMg/x4IteO0db2smf6zegn6RRZdDnbaoMSs63tfPWgo2WukT1/F1gX/AA==
+  dependencies:
+    "@babel/plugin-transform-react-jsx" "^7.3.0"
+    "@babel/runtime" "^7.5.5"
+    "@emotion/babel-plugin-jsx-pragmatic" "^0.1.5"
+    babel-plugin-emotion "^10.0.27"
 
 "@emotion/babel-utils@^0.6.4":
   version "0.6.10"
@@ -6014,6 +6031,14 @@ gatsby-plugin-disqus@^1.1.4:
   dependencies:
     babel-preset-gatsby-package "^0.1.2"
     cross-env "^5.2.0"
+
+gatsby-plugin-emotion@^4.1.18:
+  version "4.1.18"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-4.1.18.tgz#c68ca726332f9b41538290759118e5a16d04fbc1"
+  integrity sha512-dre13SQvb95uzZGuut6NoJskWPo8sDsU67Hkd99fPUaw1/LfymfE1wugEaI6lsUZravykrP9ZVetc8qBVuPHcQ==
+  dependencies:
+    "@babel/runtime" "^7.7.6"
+    "@emotion/babel-preset-css-prop" "^10.0.23"
 
 gatsby-plugin-google-fonts@^1.0.1:
   version "1.0.1"

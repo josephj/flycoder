@@ -8,7 +8,7 @@ description: >-
   開始來到澳洲、生活、最後決定離開、找工作心得的體驗。
 featuredpost: false
 id: manic-1
-featuredImage: /img/ep3-放下一切的勇氣：環遊世界-900-天的-fred.png
+featuredimage: /img/ep3-放下一切的勇氣：環遊世界-900-天的-fred.png
 tags:
   - Manic
   - 澳洲

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Flex, Box } from 'rebass';
+import { Global, css } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
@@ -50,7 +51,24 @@ const Layout = ({ children }) => {
       <Flex justifyContent="center">
         <Box sx={{ maxWidth: '42em' }}>
           <Navbar />
-          <div>{children}</div>
+          <div>
+            <Global
+              styles={css`
+                body {
+                  font-size: 14px;
+                  line-height: 1.5;
+                }
+                a,
+                a:link,
+                a:visited,
+                a:hover {
+                  color: #38b6ff;
+                  text-decoration: none;
+                }
+              `}
+            />
+            {children}
+          </div>
           <Footer />
         </Box>
       </Flex>

@@ -83,6 +83,7 @@ module.exports = {
         shortname: 'flycoder-io',
       },
     },
+    'gatsby-plugin-emotion',
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
