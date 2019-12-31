@@ -56,6 +56,17 @@ module.exports = {
               destinationDir: 'static',
             },
           },
+          {
+            resolve: 'gatsby-remark-audio',
+            options: {
+              preload: 'auto',
+              loop: false,
+              controls: true,
+              muted: false,
+              autoplay: false,
+              playbackRate: '1.5',
+            },
+          },
         ],
       },
     },

@@ -10,6 +10,15 @@ class BlogRoll extends React.Component {
 
     return (
       <div className="columns is-multiline">
+        <iframe
+          width="672"
+          height="480"
+          src="https://www.youtube.com/embed/5aazFK9ZgQM?autoplay=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+
         {posts &&
           posts.map(({ node: post }) => (
             <div className="is-parent column is-6" key={post.id}>
