@@ -6150,7 +6150,7 @@ gatsby-remark-audio@^1.0.2:
   dependencies:
     unist-util-visit "^1.4.0"
 
-gatsby-remark-copy-linked-files@^2.0.7:
+gatsby-remark-copy-linked-files@^2.1.33:
   version "2.1.33"
   resolved "https://registry.yarnpkg.com/gatsby-remark-copy-linked-files/-/gatsby-remark-copy-linked-files-2.1.33.tgz#2c2cc75b85550350c4fd3dc3d395943eb654b067"
   integrity sha512-hRXwxlaFk39tfl2hCUL6vPg89IguQRfP+mrfJzyoDN3urFFVuw8D3+98xALaoidah6o9PIqtUEphvX1V6YKKTw==
