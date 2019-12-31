@@ -15,7 +15,7 @@ class BlogRoll extends React.Component {
           <iframe
             width="672"
             height="480"
-            src="https://www.youtube.com/embed/5aazFK9ZgQM?autoplay=1"
+            src="https://www.youtube.com/embed/5aazFK9ZgQM"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
