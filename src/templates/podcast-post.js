@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import Layout from '../components/Layout';
 import Content, { HTMLContent } from '../components/Content';
-import { Box } from 'rebass';
+import { Flex, Box } from 'rebass';
 import { Disqus, CommentCount } from 'gatsby-plugin-disqus';
 
 export const BlogPostTemplate = ({
@@ -19,7 +19,9 @@ export const BlogPostTemplate = ({
   id,
   siteUrl = '',
   path,
+  pageContext,
 }) => {
+  const { previous, next } = pageContext;
   const PostContent = contentComponent || Content;
   const disqusConfig = {
     url: `${siteUrl + path}`,
@@ -37,7 +39,23 @@ export const BlogPostTemplate = ({
         <Box sx={{ lineHeight: 'body' }}>
           <PostContent content={content} />
         </Box>
-        {/* 
+
+        <Flex
+          as="nav"
+          alignItems="flex-start"
+          flexDirection={['column', 'row']}
+          flexWrap="wrap"
+          mb={2}
+          px={2}
+        >
+          <Box alignSelf="self-start" mb={2} mr={2} flex={1}>
+            {previous && <Link to={previous.frontmatter.path}>← {previous.frontmatter.title}</Link>}
+          </Box>
+          <Box alignSelf="self-end" mb={2} ml={2} flex={1} style={{ textAlign: 'right' }}>
+            {next && <Link to={next.frontmatter.path}>{next.frontmatter.title} →</Link>}
+          </Box>
+        </Flex>
+        {/*
         {tags && tags.length ? (
           <div>
             <h4>Tags</h4>
@@ -65,7 +83,7 @@ BlogPostTemplate.propTypes = {
   helmet: PropTypes.object,
 };
 
-const BlogPost = ({ data }) => {
+const BlogPost = ({ data, pageContext }) => {
   const {
     markdownRemark: post,
     site: {
@@ -90,6 +108,7 @@ const BlogPost = ({ data }) => {
         siteUrl={siteUrl}
         id={post.id}
         path={post.frontmatter.path}
+        pageContext={pageContext}
       />
     </Layout>
   );
