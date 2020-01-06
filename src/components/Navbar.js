@@ -18,7 +18,9 @@ const Navbar = class extends React.Component {
             fontWeight="bold"
             sx={{ fontFamily: 'Exo, sans-serif', letterSpacing: '1px' }}
           >
-            flycoder
+            <Link to="/" title="Home" style={{ color: '#333' }}>
+              flycoder
+            </Link>
           </Text>
         </Flex>
       </nav>

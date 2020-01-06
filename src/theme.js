@@ -3,6 +3,7 @@ export default {
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
   colors: {
     blue: '#07c',
+    gray: '#666',
     lightgray: '#f6f6ff',
   },
   space: [0, 4, 8, 16, 32, 64, 128, 256],

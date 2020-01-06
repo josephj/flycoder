@@ -1,69 +1,72 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql, StaticQuery } from 'gatsby';
-import { Flex, Box, Heading } from 'rebass';
+import { Flex, Box, Text, Heading } from 'rebass';
 import PreviewCompatibleImage from './PreviewCompatibleImage';
+import { useMediaQuery } from 'react-responsive';
 
-class BlogRoll extends React.Component {
-  render() {
-    const { data } = this.props;
-    const { edges: posts } = data.allMarkdownRemark;
+const BlogRoll = props => {
+  const { data } = props;
+  const { edges: posts } = data.allMarkdownRemark;
+  const isMobile = useMediaQuery({ query: '(max-width: 40em)' });
 
-    return (
-      <div className="columns is-multiline">
-        <Box mb={2}>
-          <iframe
-            width="672"
-            height="480"
-            src="https://www.youtube.com/embed/5aazFK9ZgQM"
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </Box>
-        {posts &&
-          posts.map(({ node: post }) => (
-            <div className="is-parent column is-6" key={post.id}>
-              <article
-                className={`blog-list-item tile is-child box notification ${
-                  post.frontmatter.featuredpost ? 'is-featured' : ''
-                }`}
+  return (
+    <div>
+      <Box mb={2}>
+        <iframe
+          width="100%"
+          height={isMobile ? '240px' : '480px'}
+          src="https://www.youtube.com/embed/5aazFK9ZgQM"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </Box>
+      {posts &&
+        posts.map(({ node: post }) => (
+          <Box mb={3} key={post.id}>
+            <article className={`${post.frontmatter.featuredpost ? 'is-featured' : ''}`}>
+              <Heading
+                as="h2"
+                fontSize={3}
+                color="blue"
+                my={2}
+                sx={{
+                  display: 'block',
+                  width: '100%',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'ellipsis',
+                  textDecoration: 'none',
+                }}
               >
-                <Flex alignItems="flex-start">
-                  {post.frontmatter.featuredimage && (
-                    <Box width={200} mr={3}>
-                      <PreviewCompatibleImage
-                        imageInfo={{
-                          image: post.frontmatter.featuredimage,
-                          alt: `featured image thumbnail for post ${post.frontmatter.title}`,
-                        }}
-                      />
-                    </Box>
-                  )}
-                  <Box flex={2}>
-                    <Heading as="h2" fontSize={3}>
-                      <Link to={post.frontmatter.path} sx={{ textDecoration: 'none' }}>
-                        {post.frontmatter.title}
-                      </Link>
-                    </Heading>
-                    <div>{post.frontmatter.date}</div>
-                    <p>
-                      {post.frontmatter.description}
-                      <br />
-                      <br />
-                      <Link className="button" to={post.frontmatter.path}>
-                        Keep Reading →
-                      </Link>
-                    </p>
+                <Link to={post.frontmatter.path}>{post.frontmatter.title}</Link>
+              </Heading>
+              <Flex alignItems="flex-start">
+                {post.frontmatter.featuredimage && (
+                  <Box width={[100, 200]} mr={3}>
+                    <PreviewCompatibleImage
+                      imageInfo={{
+                        image: post.frontmatter.featuredimage,
+                        alt: `featured image thumbnail for post ${post.frontmatter.title}`,
+                      }}
+                    />
                   </Box>
-                </Flex>
-              </article>
-            </div>
-          ))}
-      </div>
-    );
-  }
-}
+                )}
+                <Box flex={2}>
+                  <Text fontSize={0} color="gray" mb={1}>
+                    {post.frontmatter.date}
+                  </Text>
+                  {post.frontmatter.description}
+                  &nbsp;<Link to={post.frontmatter.path}>繼續閱讀...</Link>
+                </Box>
+              </Flex>
+            </article>
+          </Box>
+        ))}
+    </div>
+  );
+};
 
 BlogRoll.propTypes = {
   data: PropTypes.shape({
