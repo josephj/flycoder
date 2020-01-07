@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { kebabCase } from 'lodash';
 import Helmet from 'react-helmet';
-import { graphql, Link } from 'gatsby';
+import { graphql, Link, withPrefix } from 'gatsby';
 import Layout from '../components/Layout';
 import Content, { HTMLContent } from '../components/Content';
 import { Flex, Box, Text } from 'rebass';
@@ -98,6 +98,8 @@ const BlogPost = ({ data, pageContext }) => {
     },
   } = data;
 
+  console.log('post', post);
+
   return (
     <Layout>
       <BlogPostTemplate
@@ -108,6 +110,10 @@ const BlogPost = ({ data, pageContext }) => {
           <Helmet titleTemplate="%s | Blog">
             <title>{`${post.frontmatter.title}`}</title>
             <meta name="description" content={`${post.frontmatter.description}`} />
+            <meta property="og:url" content={`${siteUrl}${post.frontmatter.path}`} />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content={`${post.frontmatter.title} | flycoder 飛行開發者`} />
+            <meta property="og:description" content={`${post.frontmatter.description}`} />
           </Helmet>
         }
         tags={post.frontmatter.tags}
