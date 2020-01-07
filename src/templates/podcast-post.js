@@ -5,8 +5,9 @@ import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import Layout from '../components/Layout';
 import Content, { HTMLContent } from '../components/Content';
-import { Flex, Box } from 'rebass';
+import { Flex, Box, Text } from 'rebass';
 import { Disqus, CommentCount } from 'gatsby-plugin-disqus';
+import { FacebookProvider, Like } from 'react-facebook';
 
 export const BlogPostTemplate = ({
   content,
@@ -30,32 +31,37 @@ export const BlogPostTemplate = ({
   };
 
   return (
-    <section className="section">
-      {helmet || ''}
-      <div className="container content">
-        <h1>{title}</h1>
-        <Box sx={{ bg: 'lightgray', p: 3, lineHeight: 'body' }}>{description}</Box>
-
-        <Box sx={{ lineHeight: 'body' }}>
-          <PostContent content={content} />
-        </Box>
-
-        <Flex
-          as="nav"
-          alignItems="flex-start"
-          flexDirection={['column', 'row']}
-          flexWrap="wrap"
-          mb={2}
-          px={2}
-        >
-          <Box alignSelf="self-start" mb={2} mr={2} flex={1}>
-            {previous && <Link to={previous.frontmatter.path}>← {previous.frontmatter.title}</Link>}
+    <FacebookProvider appId="608261706671234">
+      <section className="section">
+        {helmet || ''}
+        <div className="container content">
+          <h1>{title}</h1>
+          <Box sx={{ mb: 3 }}>
+            <Like href={`${siteUrl}${path}`} showFaces share layout="standard" size="large" />
           </Box>
-          <Box alignSelf="self-end" mb={2} ml={2} flex={1} style={{ textAlign: 'right' }}>
-            {next && <Link to={next.frontmatter.path}>{next.frontmatter.title} →</Link>}
+          <Box sx={{ bg: 'lightgray', p: 3, lineHeight: 'body' }}>{description}</Box>
+          <Box sx={{ lineHeight: 'body' }}>
+            <PostContent content={content} />
           </Box>
-        </Flex>
-        {/*
+
+          <Flex
+            as="nav"
+            alignItems="flex-start"
+            flexDirection={['column', 'row']}
+            flexWrap="wrap"
+            mb={2}
+            px={2}
+          >
+            <Box alignSelf="self-start" mb={2} mr={2} flex={1}>
+              {previous && (
+                <Link to={previous.frontmatter.path}>← {previous.frontmatter.title}</Link>
+              )}
+            </Box>
+            <Box alignSelf="self-end" mb={2} ml={2} flex={1} style={{ textAlign: 'right' }}>
+              {next && <Link to={next.frontmatter.path}>{next.frontmatter.title} →</Link>}
+            </Box>
+          </Flex>
+          {/*
         {tags && tags.length ? (
           <div>
             <h4>Tags</h4>
@@ -69,9 +75,10 @@ export const BlogPostTemplate = ({
           </div>
         ) : null}
         */}
-      </div>
-      {siteUrl && <Disqus config={disqusConfig} />}
-    </section>
+        </div>
+        {siteUrl && <Disqus config={disqusConfig} />}
+      </section>
+    </FacebookProvider>
   );
 };
 
