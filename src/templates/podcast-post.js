@@ -5,9 +5,8 @@ import Helmet from 'react-helmet';
 import { graphql, Link, withPrefix } from 'gatsby';
 import Layout from '../components/Layout';
 import Content, { HTMLContent } from '../components/Content';
-import { Flex, Box, Text } from 'rebass';
-import { Disqus, CommentCount } from 'gatsby-plugin-disqus';
-import { FacebookProvider, Like } from 'react-facebook';
+import { Flex, Box } from 'rebass';
+import { FacebookProvider, Like, Comments } from 'react-facebook';
 
 export const BlogPostTemplate = ({
   content,
@@ -24,14 +23,9 @@ export const BlogPostTemplate = ({
 }) => {
   const { previous, next } = pageContext;
   const PostContent = contentComponent || Content;
-  const disqusConfig = {
-    url: `${siteUrl + path}`,
-    identifier: id,
-    title: title,
-  };
 
   return (
-    <FacebookProvider appId="608261706671234">
+    <FacebookProvider appId="608261706671234" language="zh_TW">
       <section className="section">
         {helmet || ''}
         <div className="container content">
@@ -76,7 +70,16 @@ export const BlogPostTemplate = ({
         ) : null}
         */}
         </div>
-        {siteUrl && <Disqus config={disqusConfig} />}
+        {siteUrl && (
+          <>
+            <Box sx={{ mb: 3 }}>
+              <Like href={`${siteUrl}${path}`} showFaces share layout="standard" size="large" />
+            </Box>
+            <Box sx={{ mb: 3 }}>
+              {siteUrl && <Comments href={`${siteUrl}${path}`} numposts={10} />}
+            </Box>
+          </>
+        )}
       </section>
     </FacebookProvider>
   );
@@ -97,8 +100,6 @@ const BlogPost = ({ data, pageContext }) => {
       siteMetadata: { siteUrl },
     },
   } = data;
-
-  console.log('post', post);
 
   return (
     <Layout>
