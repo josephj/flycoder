@@ -17,7 +17,6 @@ const Layout = ({ children }) => {
         <html lang="zh-Hant" />
         <title>{title}</title>
         <meta name="description" content={description} />
-
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -42,7 +41,6 @@ const Layout = ({ children }) => {
           color="#ff4400"
         />
         <meta name="theme-color" content="#fff" />
-
         <meta property="og:type" content="business.business" />
         <meta property="og:title" content={title} />
         <meta property="og:url" content="/" />
@@ -55,7 +53,10 @@ const Layout = ({ children }) => {
             <Global
               styles={css`
                 body {
-                  font-size: 14px;
+                  color: rgb(76, 73, 72);
+                  font-size: 16px;
+                  font-family: 'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體,
+                    'Microsoft Jhenghei', sans-serif;
                   line-height: 1.5;
                 }
                 a,

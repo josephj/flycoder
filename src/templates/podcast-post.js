@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { kebabCase } from 'lodash';
 import Helmet from 'react-helmet';
-import { graphql, Link, withPrefix } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Layout from '../components/Layout';
 import Content, { HTMLContent } from '../components/Content';
 import { Flex, Box } from 'rebass';
@@ -12,11 +11,8 @@ export const BlogPostTemplate = ({
   content,
   contentComponent,
   description,
-  tags,
-  slug,
   title,
   helmet,
-  id,
   siteUrl = '',
   path,
   pageContext,
@@ -28,16 +24,22 @@ export const BlogPostTemplate = ({
     <FacebookProvider appId="608261706671234" language="zh_TW">
       <section className="section">
         {helmet || ''}
-        <div className="container content">
+        <div>
           <h1>{title}</h1>
           <Box sx={{ mb: 3 }}>
-            <Like href={`${siteUrl}${path}`} showFaces share layout="standard" size="large" />
+            <Like
+              href={`${siteUrl}${path}`}
+              showFaces
+              share
+              layout="standard"
+              size="large"
+              width="350px"
+            />
           </Box>
           <Box sx={{ bg: 'lightgray', p: 3, lineHeight: 'body' }}>{description}</Box>
           <Box sx={{ lineHeight: 'body' }}>
             <PostContent content={content} />
           </Box>
-
           <Flex
             as="nav"
             alignItems="flex-start"
@@ -46,7 +48,7 @@ export const BlogPostTemplate = ({
             mb={2}
             px={2}
           >
-            <Box alignSelf="self-start" mb={2} mr={2} flex={1}>
+            <Box mb={2} mr={2} flex={1}>
               {previous && (
                 <Link to={previous.frontmatter.path}>← {previous.frontmatter.title}</Link>
               )}
@@ -55,25 +57,18 @@ export const BlogPostTemplate = ({
               {next && <Link to={next.frontmatter.path}>{next.frontmatter.title} →</Link>}
             </Box>
           </Flex>
-          {/*
-        {tags && tags.length ? (
-          <div>
-            <h4>Tags</h4>
-            <ul className="taglist">
-              {tags.map(tag => (
-                <li key={tag + `tag`}>
-                  <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-        */}
         </div>
         {siteUrl && (
           <>
             <Box sx={{ mb: 3 }}>
-              <Like href={`${siteUrl}${path}`} showFaces share layout="standard" size="large" />
+              <Like
+                href={`${siteUrl}${path}`}
+                showFaces
+                share
+                layout="standard"
+                size="large"
+                width="350px"
+              />
             </Box>
             <Box sx={{ mb: 3 }}>
               {siteUrl && <Comments href={`${siteUrl}${path}`} numposts={10} />}
