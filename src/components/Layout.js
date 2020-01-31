@@ -44,7 +44,7 @@ const Layout = ({ children }) => {
         <meta property="og:type" content="business.business" />
         <meta property="og:title" content={title} />
         <meta property="og:url" content="/" />
-        <meta property="og:image" content={`${withPrefix('/')}img/og-image.jpg`} />
+        <meta property="og:image" content="https://flycoder.io/img/og-img.png" />
       </Helmet>
       <Flex justifyContent="center">
         <Box sx={{ maxWidth: '42em' }}>
