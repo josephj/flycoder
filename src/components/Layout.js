@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
         <meta name="theme-color" content="#fff" />
         <meta property="og:type" content="business.business" />
         <meta property="og:title" content={title} />
-        <meta property="og:url" content="/" />
+        <meta property="og:url" content="https://flycoder.io" />
         <meta property="og:image" content="https://flycoder.io/img/og-img.png" />
       </Helmet>
       <Flex justifyContent="center">
