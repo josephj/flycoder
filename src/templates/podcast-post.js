@@ -112,6 +112,11 @@ const BlogPost = ({ data, pageContext }) => {
             <meta property="og:description" content={`${post.frontmatter.description}`} />
             <meta property="fb:admins" content="108710733990033" />
             <meta property="fb:app_id" content="608261706671234" />
+            <meta
+              data-react-helmet="true"
+              property="og:image"
+              content={post.frontmatter.featuredimage.childImageSharp.fluid.src}
+            />
           </Helmet>
         }
         tags={post.frontmatter.tags}
@@ -150,6 +155,13 @@ export const pageQuery = graphql`
         path
         description
         tags
+        featuredimage {
+          childImageSharp {
+            fluid(maxWidth: 500, quality: 90) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }
